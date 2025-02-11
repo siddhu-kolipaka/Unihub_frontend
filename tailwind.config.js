@@ -39,7 +39,7 @@ export default {
         back: "#1E1E1E",
         heading: "#FFFAF0",
         txt: "#B0A8B9",
-        pri: "#4CAF50",
+        pri: "#a075e6",
         border: "#2A2A2A",
         sec: "#3da9fc",
         background: "hsl(var(--background))",

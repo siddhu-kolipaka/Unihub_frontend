@@ -6,9 +6,9 @@ const Features = ({ setPosition }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const routes = [
-    { label: "Portfolio", to: "/portfolio" },
-    { label: "Tracker", to: "/tracker" },
-    { label: "Calculator", to: "/calc" },
+    { label: "forum", to: "/forum" },
+    { label: "events", to: "/events" },
+    { label: "maps", to: "/maps" },
   ];
 
   const featureRef = useRef(null);

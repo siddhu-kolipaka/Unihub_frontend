@@ -16,6 +16,7 @@ import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import DeleteAccount from "./pages/DeleteAccount/DeleteAccount";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import Loading from "./pages/Loading/Loading";
+import Home from "./pages/Home/Home";
 
 const App = () => {
   const { scrollY } = useScroll();
@@ -47,7 +48,7 @@ const App = () => {
     <motion.div className="relative w-full">
       <Navbar />
       <Routes>
-        <Route index element={<div>Home</div>}></Route>
+        <Route index element={<Home />}></Route>
 
         {!user?.isVerified && (
           <Route path="/verifyEmail" element={<VerifyEmail />}></Route>

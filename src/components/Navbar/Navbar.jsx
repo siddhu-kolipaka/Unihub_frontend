@@ -24,6 +24,7 @@ const SlideTabs = () => {
 
   const { scrollDirection } = useSelector((state) => state.scrollDirection);
   const { isAuthenticated } = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -65,20 +66,20 @@ const SlideTabs = () => {
               </Tab>
               {isAuthenticated ? (
                 <>
-                  <Tab to="/profile" setPosition={setPosition}>
-                    Profile
+                  <Tab to="/chatbot" setPosition={setPosition}>
+                    Chatbot
                   </Tab>
 
                   {!isSmallScreen && (
                     <>
-                      <Tab to="/portfolio" setPosition={setPosition}>
-                        portfolio
+                      <Tab to="/forum" setPosition={setPosition}>
+                        Forum
                       </Tab>
-                      <Tab to="/tracker" setPosition={setPosition}>
-                        tracker
+                      <Tab to="/events" setPosition={setPosition}>
+                        Events
                       </Tab>
-                      <Tab to="/calc" setPosition={setPosition}>
-                        calculator
+                      <Tab to="/maps" setPosition={setPosition}>
+                        Maps
                       </Tab>
                     </>
                   )}
