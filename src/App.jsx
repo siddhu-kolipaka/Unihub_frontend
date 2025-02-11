@@ -17,6 +17,7 @@ import DeleteAccount from "./pages/DeleteAccount/DeleteAccount";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import Loading from "./pages/Loading/Loading";
 import Home from "./pages/Home/Home";
+import Forum from "./pages/Forum/Forum";
 
 const App = () => {
   const { scrollY } = useScroll();
@@ -57,6 +58,7 @@ const App = () => {
         {isAuthenticated ? (
           <>
             <Route path="/deleteAccount" element={<DeleteAccount />}></Route>
+            <Route path="/forum" element={<Forum />}></Route>
           </>
         ) : (
           <>
