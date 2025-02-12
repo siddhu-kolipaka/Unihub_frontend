@@ -1,10 +1,10 @@
-import { Avatar } from "@material-ui/core";
+import { Avatar } from "@mui/material";
 import "./css/AllQuestions.css";
 import ReactHtmlParser from "react-html-parser";
 import { Link } from "react-router-dom";
 import { stringAvatar } from "../../utils/Avatar";
 
-function AllQuestions({ data }) {
+export function AllQuestions({ data }) {
   function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
@@ -78,3 +78,4 @@ function AllQuestions({ data }) {
 }
 
 export default AllQuestions;
+

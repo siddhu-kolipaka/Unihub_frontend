@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import BookmarkIcon from "@material-ui/icons/Bookmark";
-import HistoryIcon from "@material-ui/icons/History";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import HistoryIcon from "@mui/icons-material/History";
 import ReactQuill from "react-quill";
-import Editor from "react-quill/lib/toolbar";
+import "react-quill/dist/quill.snow.css"; // Import Quill styles
 import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
 import { Link } from "react-router-dom";
