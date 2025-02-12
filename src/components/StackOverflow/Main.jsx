@@ -1,4 +1,4 @@
-import FilterListIcon from "@material-ui/icons/FilterList";
+import FilterListIcon from "@mui/icons-material/FilterList";
 import "./css/Main.css";
 import AllQuestions from "./AllQuestions";
 import { Link } from "react-router-dom";

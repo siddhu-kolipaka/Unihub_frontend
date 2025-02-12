@@ -4,7 +4,7 @@ import "./css/index.css";
 import Main from "./Main";
 import axios from "axios";
 
-function Index() {
+export function Index() {
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
