@@ -1,6 +1,6 @@
-import PublicIcon from "@material-ui/icons/Public";
-import StarsIcon from "@material-ui/icons/Stars";
-import WorkIcon from "@material-ui/icons/Work";
+import PublicIcon from "@mui/icons-material/Public";
+import StarsIcon from "@mui/icons-material/Stars";
+import WorkIcon from "@mui/icons-material/Work";
 import "./css/Sidebar.css";
 import { Link } from "react-router-dom";
 

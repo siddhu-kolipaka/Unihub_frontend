@@ -1,16 +1,16 @@
-import { Avatar } from "@material-ui/core";
+import { Avatar } from "@mui/material";
 import "./css/AllQuestions.css";
-import ReactHtmlParser from "react-html-parser";
+import parse from "html-react-parser";
 import { Link } from "react-router-dom";
 import { stringAvatar } from "../../utils/Avatar";
 
-function AllQuestions({ data }) {
+export function AllQuestions({ data }) {
   function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
 
   let tags = JSON.parse(data?.tags[0]);
-  // console.log();
+
   return (
     <div className="all-questions">
       <div className="all-questions-container">
@@ -32,23 +32,13 @@ function AllQuestions({ data }) {
         <div className="question-answer">
           <Link to={`/question?q=${data?._id}`}>{data.title}</Link>
 
-          {/* <a href=>{data.title}</a> */}
-
-          <div
-            style={{
-              maxWidth: "90%",
-            }}
-          >
-            <div>{ReactHtmlParser(truncate(data.body, 200))}</div>
+          <div style={{ maxWidth: "90%" }}>
+            <div>{parse(truncate(data.body, 200))}</div>
           </div>
-          <div
-            style={{
-              display: "flex",
-            }}
-          >
+          <div style={{ display: "flex" }}>
             {tags.map((_tag, index) => (
               <p
-                key={`dfsgbdgt${index}`}
+                key={`tag-${index}`}
                 style={{
                   margin: "10px 5px",
                   padding: "5px 10px",
@@ -64,11 +54,7 @@ function AllQuestions({ data }) {
             <small>{data.create_at}</small>
             <div className="auth-details">
               <Avatar {...stringAvatar(data?.user?.displayName)} />
-              <p>
-                {data?.user?.displayName
-                  ? data?.user?.displayName
-                  : "Natalie lee"}
-              </p>
+              <p>{data?.user?.displayName || "Natalie Lee"}</p>
             </div>
           </div>
         </div>

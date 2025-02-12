@@ -3,7 +3,7 @@ import { ToastContainer } from "react-toastify";
 const Home = () => {
   return (
     <>
-      <div className="w-full h-screen bg-back flex items-center justify-center">
+      <div className="w-full h-screen  flex items-center justify-center">
         <ToastContainer
           position="top-right"
           autoClose={2000}
