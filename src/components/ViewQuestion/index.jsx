@@ -2,7 +2,7 @@ import Sidebar from "../StackOverflow/Sidebar";
 import "./index.css";
 import MainQuestion from "./MainQuestion";
 
-function Index() {
+export function Index() {
   return (
     <div className="stack-index">
       <div className="stack-index-content">

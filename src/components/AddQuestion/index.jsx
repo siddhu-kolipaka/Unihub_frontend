@@ -2,13 +2,14 @@ import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // ES6
 import "./index.css";
-import Editor from "react-quill/lib/toolbar";
+import "react-quill/dist/quill.snow.css"; // Import Quill styles
+
 import axios from "axios";
 import { TagsInput } from "react-tag-input-component";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import ChipsArray from "./TagsInput";
 
-function Index() {
+export function Index() {
   const stored = JSON.parse(localStorage.getItem("user"));
   const user = stored.username;
   var toolbarOptions = [
@@ -66,7 +67,7 @@ function Index() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [tag, setTag] = useState([]);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleQuill = (value) => {
     setBody(value);
@@ -86,7 +87,7 @@ function Index() {
         .post("/api/question", bodyJSON)
         .then(() => {
           alert("Question added successfully");
-          history.push("/");
+          navigate("/");
         })
         .catch((err) => {
           console.log(err);
