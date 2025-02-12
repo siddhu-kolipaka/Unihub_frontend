@@ -1,49 +1,54 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; // ES6
+import "react-quill/dist/quill.snow.css";
 import "./index.css";
-import "react-quill/dist/quill.snow.css"; // Import Quill styles
 
 import axios from "axios";
 import { TagsInput } from "react-tag-input-component";
 import { useNavigate } from "react-router-dom";
-// import ChipsArray from "./TagsInput";
 
-export function Index() {
-  const stored = JSON.parse(localStorage.getItem("user"));
-  const user = stored.username;
-  var toolbarOptions = [
-    ["bold", "italic", "underline", "strike"], // toggled buttons
+const AddQuestion = () => {
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const [tag, setTag] = useState([]);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  // Fetch user data safely
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("user"));
+    if (stored && stored.username) {
+      setUser(stored.username);
+    } else {
+      console.error("No user found in localStorage");
+    }
+  }, []);
+
+  // Quill toolbar configuration
+  const toolbarOptions = [
+    ["bold", "italic", "underline", "strike"],
     ["blockquote", "code-block"],
-
-    [{ header: 1 }, { header: 2 }], // custom button values
+    [{ header: 1 }, { header: 2 }],
     [{ list: "ordered" }, { list: "bullet" }],
-    [{ script: "sub" }, { script: "super" }], // superscript/subscript
-    [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-    [{ direction: "rtl" }], // text direction
-
-    [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+    [{ script: "sub" }, { script: "super" }],
+    [{ indent: "-1" }, { indent: "+1" }],
+    [{ direction: "rtl" }],
+    [{ size: ["small", false, "large", "huge"] }],
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+    [{ color: [] }, { background: [] }],
     [{ font: [] }],
     [{ align: [] }],
-
-    ["clean"], // remove formatting button
+    ["clean"],
   ];
-  Editor.modules = {
-    syntax: false,
+
+  const quillModules = {
     toolbar: toolbarOptions,
     clipboard: {
-      // toggle to add extra line breaks when pasting HTML:
       matchVisual: false,
     },
   };
-  /*
-   * Quill editor formats
-   * See https://quilljs.com/docs/formats/
-   */
-  Editor.formats = [
+
+  const quillFormats = [
     "header",
     "font",
     "size",
@@ -60,40 +65,29 @@ export function Index() {
     "video",
   ];
 
-  /*
-   * PropType validation
-   */
-
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-  const [tag, setTag] = useState([]);
-  const navigate = useNavigate();
-
-  const handleQuill = (value) => {
-    setBody(value);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (title !== "" && body !== "") {
+    if (title.trim() !== "" && body.trim() !== "") {
       const bodyJSON = {
-        title: title,
-        body: body,
+        title,
+        body,
         tag: JSON.stringify(tag),
-        user: user,
+        user,
       };
-      await axios
-        .post("/api/question", bodyJSON)
-        .then(() => {
-          alert("Question added successfully");
-          navigate("/");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+
+      try {
+        await axios.post("/api/question", bodyJSON);
+        alert("Question added successfully");
+        navigate("/");
+      } catch (err) {
+        console.error("Error submitting question:", err);
+      }
+    } else {
+      alert("Title and body are required fields.");
     }
   };
+
   return (
     <div className="add-question">
       <div className="add-question-container">
@@ -102,60 +96,54 @@ export function Index() {
         </div>
         <div className="question-container">
           <div className="question-options">
+            {/* Title Input */}
             <div className="question-option">
               <div className="title">
                 <h3>Title</h3>
                 <small>
                   Be specific and imagine you’re asking a question to another
-                  person
+                  person.
                 </small>
                 <input
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   type="text"
-                  placeholder="e.g Is there an R function for finding teh index of an element in a vector?"
+                  placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
                 />
               </div>
             </div>
+
+            {/* Body Input */}
             <div className="question-option">
               <div className="title">
                 <h3>Body</h3>
                 <small>
                   Include all the information someone would need to answer your
-                  question
+                  question.
                 </small>
                 <ReactQuill
                   value={body}
-                  onChange={handleQuill}
-                  modules={Editor.modules}
+                  onChange={setBody}
+                  modules={quillModules}
+                  formats={quillFormats}
                   className="react-quill"
                   theme="snow"
                 />
               </div>
             </div>
+
+            {/* Tags Input */}
             <div className="question-option">
               <div className="title">
                 <h3>Tags</h3>
                 <small>
-                  Add up to 5 tags to describe what your question is about
+                  Add up to 5 tags to describe what your question is about.
                 </small>
-                {/* <input
-                  value={tag}
-                  onChange={(e) => setTag(e.target.value)}
-                  data-role="tagsinput"
-                  data-tag-trigger="Space"
-                  type="text"
-                  placeholder="e.g. (asp.net-mvc php react json)"
-                /> */}
-
                 <TagsInput
                   value={tag}
                   onChange={setTag}
-                  name="fruits"
-                  placeHolder="press enter to add new tag"
+                  placeHolder="Press enter to add a new tag"
                 />
-
-                {/* <ChipsArray /> */}
               </div>
             </div>
           </div>
@@ -167,6 +155,6 @@ export function Index() {
       </div>
     </div>
   );
-}
+};
 
-export default Index;
+export default AddQuestion;

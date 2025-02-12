@@ -4,7 +4,7 @@ import "./css/index.css";
 import Main from "./Main";
 import axios from "axios";
 
-export function Index() {
+const StackOverflow = () => {
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
@@ -24,6 +24,6 @@ export function Index() {
       </div>
     </div>
   );
-}
+};
 
-export default Index;
+export default StackOverflow;

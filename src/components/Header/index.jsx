@@ -2,7 +2,7 @@ import Sidebar from "../StackOverflow/Sidebar";
 import "./index.css";
 import MainQuestion from "./MainQuestion";
 
-export function Index() {
+const Header = () => {
   return (
     <div className="stack-index">
       <div className="stack-index-content">
@@ -11,6 +11,6 @@ export function Index() {
       </div>
     </div>
   );
-}
+};
 
-export default Index;
+export default Header;
