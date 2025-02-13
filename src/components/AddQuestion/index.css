@@ -1,7 +1,7 @@
 .add-question {
   display: flex;
   width: 100%;
-  background-color: rgba(238, 238, 238, 0.568);
+  background-color: #182D29;
 
   height: 100vh;
   justify-content: center;
@@ -13,6 +13,7 @@
   flex-direction: column;
   width: 95%;
   max-width: 800px;
+  background-color: #182D29;
 }
 
 .head-title {
@@ -20,11 +21,11 @@
   width: 100%;
 }
 
-.head-title > h1 {
+/* .head-title > h1 {
   margin-bottom: 20px;
   font-weight: 400;
   font-size: 26px;
-}
+} */
 
 .question-container {
   display: flex;
@@ -54,22 +55,22 @@
   font-size: 0.9rem;
 }
 
-.title > h3 {
+/* .title > h3 {
   color: rgba(0, 0, 0, 0.8);
   font-weight: 500;
-}
+} */
 
 .title > small {
   color: rgba(0, 0, 0, 0.8);
 }
 
-.title > input {
+/* .title > input {
   margin: 5px 0px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 3px;
   outline: none;
-}
+} */
 
 .title > input::placeholder {
   color: #ddd;
@@ -83,20 +84,20 @@
   height: 100%;
 }
 
-.react-quill {
+/* .react-quill {
   margin: 10px 0;
   border-radius: 10px;
-}
+} */
 
 .ql-editor {
   height: 200px;
 }
 
-.button {
+/* .button {
   max-width: fit-content;
   margin: 10px 0px;
 }
 
 button:hover {
   background-color: #053086;
-}
+} */
