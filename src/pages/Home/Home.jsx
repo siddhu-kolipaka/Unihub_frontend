@@ -15,10 +15,10 @@ const Home = () => {
           className="md:w-fit"
         />
 
-        <AddQuestion/>
+        {/* <AddQuestion/> */}
         {/* <MainQuestion/> */}
         {/* <AllQuestions/> */}
-        {/* <StackOverflow/> */}
+        <StackOverflow/>
         {/* <ViewQuestion /> */}
       </div>
     </>

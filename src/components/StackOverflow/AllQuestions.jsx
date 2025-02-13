@@ -11,16 +11,16 @@ export function AllQuestions({ data }) {
   let tags = JSON.parse(data?.tags[0]);
 
   return (
-    <div className="bg-gray-800 rounded-2xl p-6 mb-6 shadow-lg">
+    <div className=" bg-gray-800 rounded-2xl p-6 mb-6 shadow-lg">
       <div className="flex">
         {/* Left Section - Votes, Answers, Views */}
         <div className="flex flex-col items-center mr-6">
           <div className="text-center mb-4">
-            <p className="text-purple-400 text-xl font-bold">0</p>
+            <p className="text-pri text-xl font-bold">0</p>
             <span className="text-gray-300 text-sm">votes</span>
           </div>
           <div className="text-center mb-4">
-            <p className="text-purple-400 text-xl font-bold">
+            <p className="text-pri text-xl font-bold">
               {data?.answerDetails?.length}
             </p>
             <span className="text-gray-300 text-sm">answers</span>
@@ -35,7 +35,7 @@ export function AllQuestions({ data }) {
           {/* Question Title */}
           <Link
             to={`/question?q=${data?._id}`}
-            className="text-purple-400 text-2xl font-bold hover:text-purple-300 transition-colors"
+            className="text-pri text-2xl font-bold hover:text-purple-300 transition-colors"
           >
             {data.title}
           </Link>
@@ -62,7 +62,7 @@ export function AllQuestions({ data }) {
             <small className="text-gray-400">{data.create_at}</small>
             <div className="flex items-center space-x-2">
               <Avatar {...stringAvatar(data?.user?.displayName)} />
-              <p className="text-purple-400 font-medium">
+              <p className="text-pri font-medium">
                 {data?.user?.displayName || "Natalie Lee"}
               </p>
             </div>

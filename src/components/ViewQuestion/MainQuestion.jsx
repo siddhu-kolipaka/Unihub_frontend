@@ -117,8 +117,8 @@ function MainQuestion() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 py-10">
-      <div className="max-w-4xl mx-auto">
+    <div className="w-screen h-screen bg-gradient-to-br from-gray-900 to-gray-800 py-10">
+      <div className="max-w-3xl ml-72 pl-6">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-3xl font-bold text-pri">
@@ -286,31 +286,31 @@ function MainQuestion() {
           </button>
         </div>
 
-        {/* Custom CSS for Quill Icons */}
-        <style>
+       {/* Custom CSS for Quill Icons (Unchanged) */}
+       <style>
           {`
             .ql-toolbar.ql-snow {
-              border: 1px solid var(--pri) !important; /* Use CSS variable for primary color */
+              border: 1px solid #6d28d9 !important; /* Purple border */
               border-radius: 8px 8px 0 0;
               background-color: #374151; /* Gray-700 */
             }
             .ql-container.ql-snow {
-              border: 1px solid var(--pri) !important; /* Use CSS variable for primary color */
+              border: 1px solid #6d28d9 !important; /* Purple border */
               border-radius: 0 0 8px 8px;
               background-color: #374151; /* Gray-700 */
             }
             .ql-snow .ql-stroke {
-              stroke: var(--pri-light) !important; /* Use CSS variable for light primary color */
+              stroke: #d8b4fe !important; /* Light purple for icons */
             }
             .ql-snow .ql-fill {
-              fill: var(--pri-light) !important; /* Use CSS variable for light primary color */
+              fill: #d8b4fe !important; /* Light purple for icons */
             }
             .ql-snow .ql-picker {
-              color: var(--pri-light) !important; /* Use CSS variable for light primary color */
+              color: #d8b4fe !important; /* Light purple for picker text */
             }
             .ql-editor {
               font-size: 1.125rem; /* text-lg */
-              color: var(--pri-light); /* Use CSS variable for light primary color */
+              color: #e9d5ff; /* Light purple for text */
             }
             .ql-editor.ql-blank::before {
               color: #9ca3af; /* Gray-400 for placeholder */

@@ -12,7 +12,7 @@ function Sidebar() {
           <div className="sidebar-option">
             <Link
               to="/"
-              className="text-purple-400 hover:text-purple-300 transition-colors text-lg font-semibold"
+              className="text-pri hover:text-purple-300 transition-colors text-lg font-semibold"
             >
               Home
             </Link>
@@ -25,7 +25,7 @@ function Sidebar() {
             </p>
             <div className="link space-y-3">
               <div className="link-tag flex items-center space-x-3 p-3 bg-gray-800 rounded-lg hover:bg-gray-750 transition-colors">
-                <PublicIcon className="text-purple-400" />
+                <PublicIcon className="text-pri" />
                 <Link
                   to="/"
                   className="text-purple-200 hover:text-purple-300 transition-colors"
@@ -52,7 +52,7 @@ function Sidebar() {
             </p>
             <div className="link">
               <div className="link-tag flex items-center space-x-3 p-3 bg-gray-800 rounded-lg hover:bg-gray-750 transition-colors">
-                <StarsIcon className="text-purple-400" />
+                <StarsIcon className="text-pri" />
                 <Link
                   to="/"
                   className="text-purple-200 hover:text-purple-300 transition-colors"

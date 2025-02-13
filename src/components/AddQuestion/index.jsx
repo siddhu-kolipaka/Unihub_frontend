@@ -90,11 +90,14 @@ const AddQuestion = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 py-10">
-      <div className="max-w-4xl mx-auto">
+    <div className="flex items-center justify-center min-h-screen w-screen bg-gradient-to-br from-gray-900 to-gray-800 overflow-hidden">
+      <div
+        style={{ height: "calc(100vh - 80px)", marginTop: "80px", marginBottom: "90px" }}
+        className="max-w-3xl w-full mx-auto"
+      >
         {/* Header */}
-        <div className="bg-gray-800 rounded-2xl p-8 mb-8 shadow-lg">
-          <h1 className="text-4xl font-bold text-purple-400 mb-2 text-center">
+        <div className="bg-gray-800 rounded-2xl p-5 mb-5 shadow-lg">
+          <h1 className="text-4xl font-bold text-pri mb-2 text-center">
             Ask a Public Question
           </h1>
           <p className="text-gray-300 text-center">
@@ -103,15 +106,15 @@ const AddQuestion = () => {
         </div>
 
         {/* Title Input */}
-        <div className="bg-gray-800 rounded-2xl p-8 mb-8 shadow-lg">
-          <label className="block text-lg font-semibold text-purple-400 mb-3">
+        <div className="bg-gray-800 rounded-2xl p-6 mb-4 shadow-lg">
+          <label className="block text-lg font-semibold text-pri mb-3">
             Title
           </label>
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             type="text"
-            className="w-full p-3 border border-purple-600 rounded-lg bg-gray-700 text-purple-200 placeholder-purple-400 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-lg"
+            className="w-full p-3 border border-pri rounded-lg bg-gray-700 text-pri placeholder-pri focus:ring-2 focus:ring-pri focus:border-pri transition-all text-lg"
             placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
           />
           <small className="text-sm text-gray-400 mt-2">
@@ -120,18 +123,18 @@ const AddQuestion = () => {
         </div>
 
         {/* Body Input */}
-        <div className="bg-gray-800 rounded-2xl p-8 mb-8 shadow-lg">
-          <label className="block text-lg font-semibold text-purple-400 mb-3">
+        <div className="bg-gray-800 rounded-2xl p-6 mb-5 shadow-lg">
+          <label className="block text-lg font-semibold text-pri mb-2">
             Body
           </label>
-          <div className="bg-gray-700 rounded-lg border border-purple-600">
+          <div className="bg-gray-700 rounded-lg border border-pri">
             <ReactQuill
               value={body}
               onChange={setBody}
               modules={quillModules}
               formats={quillFormats}
               theme="snow"
-              className="text-purple-200 text-lg"
+              className="text-pri text-lg"
               placeholder="Include all the information someone would need to answer your question."
             />
           </div>
@@ -141,14 +144,14 @@ const AddQuestion = () => {
         </div>
 
         {/* Tags Input */}
-        <div className="bg-gray-800 rounded-2xl p-8 mb-8 shadow-lg">
-          <label className="block text-lg font-semibold text-purple-400 mb-3">
+        <div className="bg-gray-800 rounded-2xl p-5 mb-2 shadow-lg">
+          <label className="block text-lg font-semibold text-pri mb-2">
             Tags
           </label>
           <TagsInput
             value={tag}
             onChange={setTag}
-            className="w-full p-3 border border-purple-600 rounded-lg bg-gray-700 text-purple-200 placeholder-purple-400 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-lg"
+            className="w-full p-3 border border-pri rounded-lg bg-gray-700 text-pri placeholder-pri focus:ring-2 focus:ring-pri focus:border-pri transition-all text-lg"
             placeHolder="Press enter to add a new tag"
           />
           <small className="text-sm text-gray-400 mt-2">
@@ -160,13 +163,13 @@ const AddQuestion = () => {
         <div className="bg-gray-800 rounded-2xl p-8 shadow-lg">
           <button
             onClick={handleSubmit}
-            className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-lg font-bold uppercase hover:from-purple-700 hover:to-blue-700 transition-all shadow-lg text-lg"
+            className="w-full bg-gradient-to-r from-pri to-blue-600 text-white px-6 py-3 rounded-lg font-bold uppercase hover:from-pri-dark hover:to-blue-700 transition-all shadow-lg text-lg"
           >
             Add Your Question
           </button>
         </div>
 
-        {/* Custom CSS for Quill Icons */}
+        {/* Custom CSS for Quill Icons (Unchanged) */}
         <style>
           {`
             .ql-toolbar.ql-snow {
