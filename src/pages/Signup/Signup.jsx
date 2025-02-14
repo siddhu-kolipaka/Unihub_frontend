@@ -54,6 +54,10 @@ const Signup = () => {
     setUsername(e.target.value);
   };
 
+  const handleRoleChange = (e) => {
+    setRole(e.target.value);
+  };
+
   const handlePasswordChange = (e) => {
     const value = e.target.value;
     setPassword(value);
@@ -138,12 +142,19 @@ const Signup = () => {
           <Input color1="#282829" color2="#4CAF50" className="rounded-xl p-px ">
             <select
               type="text"
-              placeholder="Role"
+              placeholder="role"
               value={role}
-              onChange={handleUsernameChange}
+              onChange={handleRoleChange}
               className="rounded-xl focus:outline-none h-12 text-txt px-4 bg-back w-full"
               autoComplete="off"
-            ></select>
+            >
+              <option value="" disabled>
+                Designation
+              </option>
+              <option value="Student">Student</option>
+              <option value="Coordinator">Event Coordinator</option>
+              <option value="Business">Business Individual</option>
+            </select>
           </Input>
           <Input color1="#282829" color2="#4CAF50" className="rounded-xl p-px">
             <input
