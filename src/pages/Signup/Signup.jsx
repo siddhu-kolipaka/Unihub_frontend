@@ -12,6 +12,7 @@ import { Link } from "react-router";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
+  const [role, setRole] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -133,6 +134,16 @@ const Signup = () => {
               className="rounded-xl focus:outline-none h-12 text-txt px-4 bg-back w-full"
               autoComplete="off"
             />
+          </Input>
+          <Input color1="#282829" color2="#4CAF50" className="rounded-xl p-px ">
+            <select
+              type="text"
+              placeholder="Role"
+              value={role}
+              onChange={handleUsernameChange}
+              className="rounded-xl focus:outline-none h-12 text-txt px-4 bg-back w-full"
+              autoComplete="off"
+            ></select>
           </Input>
           <Input color1="#282829" color2="#4CAF50" className="rounded-xl p-px">
             <input
