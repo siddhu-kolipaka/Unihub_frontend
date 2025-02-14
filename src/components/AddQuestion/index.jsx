@@ -10,6 +10,7 @@ const AddQuestion = () => {
   const [tag, setTag] = useState([]);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const [image, setImage] = useState(null); // State for a single image
 
   // Fetch user data safely
   useEffect(() => {
@@ -64,21 +65,37 @@ const AddQuestion = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("Title:", title);
-    console.log("Body:", body);
-    console.log("Tags:", tag);
-
+  
     if (title.trim() !== "" && body.trim() !== "") {
-      const bodyJSON = {
-        title,
-        body,
-        tag: JSON.stringify(tag),
-        user,
-      };
-
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("body", body);
+      formData.append("tag", JSON.stringify(tag));
+      formData.append("user", user);
+  
+      // Append the single image to the formData
+      if (image) {
+        formData.append("image", image); // Use "image" instead of "images"
+      }
+  
+      // Log the title, body, and tags
+      console.log("Title:", title);
+      console.log("Body:", body);
+      console.log("Tags:", tag);
+  
+      // Log a confirmation message for the image
+      if (image) {
+        console.log("Image added successfully");
+      } else {
+        console.log("No image added");
+      }
+  
       try {
-        await axios.post("/api/question", bodyJSON);
+        await axios.post("/api/question", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
         alert("Question added successfully");
         navigate("/");
       } catch (err) {
@@ -143,6 +160,21 @@ const AddQuestion = () => {
           </small>
         </div>
 
+        <div className="bg-gray-800 rounded-2xl p-6 mb-5 shadow-lg">
+           <label className="block text-lg font-semibold text-pri mb-2">
+              Upload Image
+            </label>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setImage(e.target.files[0])} // Only take the first file
+          className="w-full p-3 border border-pri rounded-lg bg-gray-700 text-pri placeholder-pri focus:ring-2 focus:ring-pri focus:border-pri transition-all text-lg"
+        />
+        <small className="text-sm text-gray-400 mt-2">
+          You can upload only one image.
+        </small>
+        </div>
+
         {/* Tags Input */}
         <div className="bg-gray-800 rounded-2xl p-5 mb-2 shadow-lg">
           <label className="block text-lg font-semibold text-pri mb-2">
@@ -157,9 +189,16 @@ const AddQuestion = () => {
           <small className="text-sm text-gray-400 mt-2">
             Add up to 5 tags to describe what your question is about.
           </small>
+
+          <button
+            onClick={handleSubmit}
+            className=" mt-4 w-full bg-gradient-to-r from-pri to-blue-600 text-white px-6 py-3 rounded-lg font-bold uppercase hover:from-pri-dark hover:to-blue-700 transition-all shadow-lg text-lg"
+          >
+            Add Your Question
+          </button>
         </div>
 
-        {/* Submit Button */}
+        {/* Submit Button
         <div className="bg-gray-800 rounded-2xl p-8 shadow-lg">
           <button
             onClick={handleSubmit}
@@ -167,7 +206,7 @@ const AddQuestion = () => {
           >
             Add Your Question
           </button>
-        </div>
+        </div> */}
 
         {/* Custom CSS for Quill Icons (Unchanged) */}
         <style>
