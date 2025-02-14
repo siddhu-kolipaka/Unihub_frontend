@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import "./index.css";
-
-import axios from "axios";
 import { TagsInput } from "react-tag-input-component";
 import { useNavigate } from "react-router-dom";
 
@@ -68,6 +65,10 @@ const AddQuestion = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log("Title:", title);
+    console.log("Body:", body);
+    console.log("Tags:", tag);
+
     if (title.trim() !== "" && body.trim() !== "") {
       const bodyJSON = {
         title,
@@ -89,69 +90,118 @@ const AddQuestion = () => {
   };
 
   return (
-    <div className="add-question">
-      <div className="add-question-container">
-        <div className="head-title">
-          <h1>Ask a public question</h1>
+    <div className="flex items-center justify-center min-h-screen w-screen bg-gradient-to-br from-gray-900 to-gray-800 overflow-hidden">
+      <div
+        style={{ height: "calc(100vh - 80px)", marginTop: "80px", marginBottom: "90px" }}
+        className="max-w-3xl w-full mx-auto"
+      >
+        {/* Header */}
+        <div className="bg-gray-800 rounded-2xl p-5 mb-5 shadow-lg">
+          <h1 className="text-4xl font-bold text-pri mb-2 text-center">
+            Ask a Public Question
+          </h1>
+          <p className="text-gray-300 text-center">
+            Be specific and imagine you’re asking a question to another person.
+          </p>
         </div>
-        <div className="question-container">
-          <div className="question-options">
-            {/* Title Input */}
-            <div className="question-option">
-              <div className="title">
-                <h3>Title</h3>
-                <small>
-                  Be specific and imagine you’re asking a question to another
-                  person.
-                </small>
-                <input
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  type="text"
-                  placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
-                />
-              </div>
-            </div>
 
-            {/* Body Input */}
-            <div className="question-option">
-              <div className="title">
-                <h3>Body</h3>
-                <small>
-                  Include all the information someone would need to answer your
-                  question.
-                </small>
-                <ReactQuill
-                  value={body}
-                  onChange={setBody}
-                  modules={quillModules}
-                  formats={quillFormats}
-                  className="react-quill"
-                  theme="snow"
-                />
-              </div>
-            </div>
+        {/* Title Input */}
+        <div className="bg-gray-800 rounded-2xl p-6 mb-4 shadow-lg">
+          <label className="block text-lg font-semibold text-pri mb-3">
+            Title
+          </label>
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            type="text"
+            className="w-full p-3 border border-pri rounded-lg bg-gray-700 text-pri placeholder-pri focus:ring-2 focus:ring-pri focus:border-pri transition-all text-lg"
+            placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
+          />
+          <small className="text-sm text-gray-400 mt-2">
+            Be specific and concise with your question title.
+          </small>
+        </div>
 
-            {/* Tags Input */}
-            <div className="question-option">
-              <div className="title">
-                <h3>Tags</h3>
-                <small>
-                  Add up to 5 tags to describe what your question is about.
-                </small>
-                <TagsInput
-                  value={tag}
-                  onChange={setTag}
-                  placeHolder="Press enter to add a new tag"
-                />
-              </div>
-            </div>
+        {/* Body Input */}
+        <div className="bg-gray-800 rounded-2xl p-6 mb-5 shadow-lg">
+          <label className="block text-lg font-semibold text-pri mb-2">
+            Body
+          </label>
+          <div className="bg-gray-700 rounded-lg border border-pri">
+            <ReactQuill
+              value={body}
+              onChange={setBody}
+              modules={quillModules}
+              formats={quillFormats}
+              theme="snow"
+              className="text-pri text-lg"
+              placeholder="Include all the information someone would need to answer your question."
+            />
           </div>
+          <small className="text-sm text-gray-400 mt-2">
+            Provide detailed information to get the best answers.
+          </small>
         </div>
 
-        <button onClick={handleSubmit} className="button">
-          Add your question
-        </button>
+        {/* Tags Input */}
+        <div className="bg-gray-800 rounded-2xl p-5 mb-2 shadow-lg">
+          <label className="block text-lg font-semibold text-pri mb-2">
+            Tags
+          </label>
+          <TagsInput
+            value={tag}
+            onChange={setTag}
+            className="w-full p-3 border border-pri rounded-lg bg-gray-700 text-pri placeholder-pri focus:ring-2 focus:ring-pri focus:border-pri transition-all text-lg"
+            placeHolder="Press enter to add a new tag"
+          />
+          <small className="text-sm text-gray-400 mt-2">
+            Add up to 5 tags to describe what your question is about.
+          </small>
+        </div>
+
+        {/* Submit Button */}
+        <div className="bg-gray-800 rounded-2xl p-8 shadow-lg">
+          <button
+            onClick={handleSubmit}
+            className="w-full bg-gradient-to-r from-pri to-blue-600 text-white px-6 py-3 rounded-lg font-bold uppercase hover:from-pri-dark hover:to-blue-700 transition-all shadow-lg text-lg"
+          >
+            Add Your Question
+          </button>
+        </div>
+
+        {/* Custom CSS for Quill Icons (Unchanged) */}
+        <style>
+          {`
+            .ql-toolbar.ql-snow {
+              border: 1px solid #6d28d9 !important; /* Purple border */
+              border-radius: 8px 8px 0 0;
+              background-color: #374151; /* Gray-700 */
+            }
+            .ql-container.ql-snow {
+              border: 1px solid #6d28d9 !important; /* Purple border */
+              border-radius: 0 0 8px 8px;
+              background-color: #374151; /* Gray-700 */
+            }
+            .ql-snow .ql-stroke {
+              stroke: #d8b4fe !important; /* Light purple for icons */
+            }
+            .ql-snow .ql-fill {
+              fill: #d8b4fe !important; /* Light purple for icons */
+            }
+            .ql-snow .ql-picker {
+              color: #d8b4fe !important; /* Light purple for picker text */
+            }
+            .ql-editor {
+              font-size: 1.125rem; /* text-lg */
+              color: #e9d5ff; /* Light purple for text */
+            }
+            .ql-editor.ql-blank::before {
+              color: #9ca3af; /* Gray-400 for placeholder */
+              font-size: 1.125rem; /* text-lg */
+              font-style: normal !important;
+            }
+          `}
+        </style>
       </div>
     </div>
   );

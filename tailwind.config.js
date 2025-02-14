@@ -40,6 +40,8 @@ export default {
         heading: "#FFFAF0",
         txt: "#B0A8B9",
         pri: "#a075e6",
+        // pri-dark: "#5b21b6", // Darker primary color
+        // pri-light: "#d8b4fe", // Lighter primary color
         border: "#2A2A2A",
         sec: "#3da9fc",
         background: "hsl(var(--background))",

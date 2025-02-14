@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
-import "./css/index.css";
 import Main from "./Main";
 import axios from "axios";
 
@@ -11,15 +10,20 @@ const StackOverflow = () => {
     async function getQuestion() {
       await axios.get("/api/question").then((res) => {
         setQuestions(res.data.reverse());
-        // console.log(res.data)
       });
     }
     getQuestion();
   }, []);
+
   return (
-    <div className="stack-index">
-      <div className="stack-index-content">
+    <div className="flex min-h-screen w-screen bg-gradient-to-br from-gray-900 to-gray-800">
+      {/* Sidebar - Fixed width */}
+      <div className="w-64 flex-shrink-0">
         <Sidebar />
+      </div>
+
+      {/* Main - Takes remaining space */}
+      <div className="flex-1 px-5">
         <Main questions={questions} />
       </div>
     </div>
