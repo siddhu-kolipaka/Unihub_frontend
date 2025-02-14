@@ -1,27 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { TagsInput } from "react-tag-input-component";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const AddQuestion = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [tag, setTag] = useState([]);
-  const [user, setUser] = useState(null);
+  const [tags, setTags] = useState([]);
   const navigate = useNavigate();
 
-  // Fetch user data safely
-  useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("user"));
-    if (stored && stored.username) {
-      setUser(stored.username);
-    } else {
-      console.error("No user found in localStorage");
-    }
-  }, []);
+  const user = useSelector((state) => state.auth.username);
 
-  // Quill toolbar configuration
   const toolbarOptions = [
     ["bold", "italic", "underline", "strike"],
     ["blockquote", "code-block"],
@@ -65,24 +56,22 @@ const AddQuestion = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Title:", title);
-    console.log("Body:", body);
-    console.log("Tags:", tag);
-
     if (title.trim() !== "" && body.trim() !== "") {
       const bodyJSON = {
         title,
         body,
-        tag: JSON.stringify(tag),
+        tags: JSON.stringify(tags),
         user,
       };
 
+      console.log(bodyJSON);
+
       try {
-        await axios.post("/api/question", bodyJSON);
+        // await axios.post("/api/question", bodyJSON);
         alert("Question added successfully");
-        navigate("/");
       } catch (err) {
         console.error("Error submitting question:", err);
+        alert("Failed to submit question. Please try again.");
       }
     } else {
       alert("Title and body are required fields.");
@@ -92,7 +81,11 @@ const AddQuestion = () => {
   return (
     <div className="flex items-center justify-center min-h-screen w-screen bg-gradient-to-br from-gray-900 to-gray-800 overflow-hidden">
       <div
-        style={{ height: "calc(100vh - 80px)", marginTop: "80px", marginBottom: "90px" }}
+        style={{
+          height: "calc(100vh - 80px)",
+          marginTop: "80px",
+          marginBottom: "90px",
+        }}
         className="max-w-3xl w-full mx-auto"
       >
         {/* Header */}
@@ -148,12 +141,14 @@ const AddQuestion = () => {
           <label className="block text-lg font-semibold text-pri mb-2">
             Tags
           </label>
-          <TagsInput
-            value={tag}
-            onChange={setTag}
-            className="w-full p-3 border border-pri rounded-lg bg-gray-700 text-pri placeholder-pri focus:ring-2 focus:ring-pri focus:border-pri transition-all text-lg"
-            placeHolder="Press enter to add a new tag"
-          />
+          <div className="w-full p-3 border border-pri rounded-lg bg-gray-700 text-pri placeholder-pri focus:ring-2 focus:ring-pri focus:border-pri transition-all text-lg">
+            <TagsInput
+              value={tags}
+              onChange={setTags}
+              name="tags"
+              placeHolder="Press enter to add a new tag"
+            />
+          </div>
           <small className="text-sm text-gray-400 mt-2">
             Add up to 5 tags to describe what your question is about.
           </small>
